@@ -1,0 +1,73 @@
+{% extends 'homepage.html'%}
+
+{% block body %}
+<body>
+    <div class="row border m-4 p-3" style="background-color: #f2f5f8">
+        <div class="col col-3">
+            <div class="flex-shrink-0" style="text-align: center">
+                {% if post.autor.id != current_user.id %}
+                    <a class="w-100" href="{{ url_for('outro_perfil', id=post.autor.id) }}">
+                        <img src="{{  url_for('static', filename='fotos_perfil/{}'.format(post.autor.foto_perfil)) }}"
+                        alt="Generic placeholder image" class="img-fluid" style="width: 200px; border-radius: 10px;">
+                    </a>
+                {% elif post.autor.id == current_user.id %}
+                    <a class="w-100" href="{{ url_for('perfil', id=post.autor.id) }}">
+                        <img src="{{  url_for('static', filename='fotos_perfil/{}'.format(post.autor.foto_perfil)) }}"
+                        alt="Generic placeholder image" class="img-fluid" style="width: 200px; border-radius: 10px;">
+                    </a>
+                {% endif %}
+
+                <div class="mt-2" style="text-align: center">
+                    <strong>{{ post.autor.username }}</strong>
+                </div>
+            </div>
+        </div>
+
+        <div class="col col-9">
+            <h3>{{ post.titulo }}</h3>
+            <p>{{ post.corpo }}</p>
+        </div>
+
+        <div align="right">
+            <small>Data de criação: {{ post.data_criacao.strftime("%d/%m/%Y") }}</small>
+        </div>
+    </div>
+
+     {% if post.autor.id == current_user.id %}
+     <div class="container me-3" align="right">
+            <a href="{{ url_for('editar_post', id=post.id) }}"><button type="button" class="btn btn-light w-20">Editar</button></a>
+            <a href="{{ url_for('deletar_post', id=post.id) }}" data-bs-toggle="modal" data-bs-target="#excluirpost"><button type="button" class="btn btn-danger">Deletar</button></a>
+     </div>
+     {% endif %}
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+
+
+<!-- Modal -->
+<div class="modal fade" id="excluirpost" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="excluirpost">Deletar Post</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body">
+        <p>Tem certeza que deseja excluir esse post?</p>
+      </div>
+
+      <div class="modal-footer">
+
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+
+        <form method="POST" action="{{ url_for('deletar_post', id=post.id) }}">
+          <button type="submit" class="btn btn-danger">Deletar</button>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

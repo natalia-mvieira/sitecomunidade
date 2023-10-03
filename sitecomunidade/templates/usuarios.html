@@ -1,0 +1,90 @@
+{% extends 'perfil.html' %}
+
+
+{% block body %}
+
+  {% for usuario in usuarios %}
+    <div class="container py-3 ">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="col col-md-9 col-lg-7 col-xl-4">
+            <div class="card" style="border-radius: 15px;">
+              <div class="card-body p-4">
+                <div class="d-flex text-black">
+                <div class="flex-shrink-0">
+                   {% if usuario.id != current_user.id %}
+                        <a class="w-100" href="{{ url_for('outro_perfil', id=usuario.id) }}">
+                            <img src="{{  url_for('static', filename='fotos_perfil/{}'.format(usuario.foto_perfil)) }}"
+                            alt="Generic placeholder image" class="img-fluid" style="width: 200px; border-radius: 10px;">
+                        </a>
+                    {% elif usuario.id == current_user.id %}
+                        <a class="w-100" href="{{ url_for('perfil', id=usuario.id) }}">
+                            <img src="{{  url_for('static', filename='fotos_perfil/{}'.format(usuario.foto_perfil)) }}"
+                            alt="Generic placeholder image" class="img-fluid" style="width: 200px; border-radius: 10px;">
+                        </a>
+                    {% endif %}
+                </div>
+                  <div class="flex-grow-1 ms-3">
+                    <h5 class="mb-1">{{ usuario.username }}</h5>
+                    <p class="mb-2 pb-1" style="color: #2b2a2a;">{{ usuario.email }}</p>
+
+                    <div class="d-flex justify-content-between rounded p-2 mb-2" style="background-color: #efefef;">
+
+                      <div class="d-flex flex-column align-items-center">
+                        <p class="small text-muted mb-1">Posts</p>
+                        <p class="mb-0" style="font-weight: bold">{{ usuario.contar_posts() }}</p>
+                      </div>
+
+                      <div class="d-flex flex-column align-items-center">
+                        <p class="small text-muted mb-1">Cursos</p>
+                          {% if usuario.cursos != 'Não informado' %}
+                            <p class="mb-0" style="font-weight: bold">
+                              {{ usuario.cursos.count(';') }}
+                            </p>
+                          {% else %}
+                            <p class="mb-0" style="font-weight: bold">0</p>
+                          {% endif %}
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row justify-content-center">
+                  <div class="col col-6" style="text-align:center">
+                    <strong>Cursos</strong><br>
+                    {% if 'Python' in usuario.cursos %}
+                      <button type="button" class="btn btn-primary mt-2" disabled>Python</button>
+                    {% endif %}
+                    {% if 'SQL' in usuario.cursos %}
+                      <button type="button" class="btn btn-secondary mt-2" disabled>SQL</button>
+                    {% endif %}
+                    {% if 'HTML' in usuario.cursos %}
+                      <button type="button" class="btn btn-success mt-2" disabled>HTML</button>
+                    {% endif %}
+                    {% if 'VBA' in usuario.cursos %}
+                      <button type="button" class="btn btn-danger mt-2" disabled>VBA</button>
+                    {% endif %}
+                    {% if 'PowerBI' in usuario.cursos %}
+                      <button type="button" class="btn btn-warning mt-2" disabled>PowerBI</button>
+                    {% endif %}
+                    {% if 'CSS' in usuario.cursos %}
+                      <button type="button" class="btn btn-info mt-2" disabled>CSS</button>
+                    {% endif %}
+                    {% if 'JavaScrypt' in usuario.cursos %}
+                      <button type="button" class="btn btn-light mt-2" disabled>JavaScrypt</button>
+                    {% endif %}
+                    {% if 'C#' in usuario.cursos %}
+                      <button type="button" class="btn btn-dark mt-2" disabled>C#</button>
+                    {% endif %}
+                    {% if 'Não informado' in usuario.cursos or usuario.cursos.count(';')==0 %}
+                      <button type="button" class="btn btn-outline-dark" disabled>Não informado</button>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+  {% endfor %}
+{% endblock %}
