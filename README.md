@@ -6,7 +6,7 @@ O site foi criado utilizando-se o *framework* Flask.
 
 Para gerenciamento dos usuários e das postagens, foi criado um banco de dados por meio da biblioteca SQLAlchemy. Uma das tabelas armazena as informações das contas criadas (Usuario) e a outra (Post) armazena as informações dos posts criados.
 
-Na criação da conta, para garantir a segurança da senha do usuário, ela é criptografada por meio da classe Bcrytpt da biblioteca Flask-Bcrypt.
+Na criação da conta, para garantir a segurança da senha do usuário, ela é criptografada por meio da classe Bcrypt da biblioteca Flask-Bcrypt.
 
 Para processos que envolvem o usuário estar logado (@login_required), sendo sua identificação feita por seu ID, foi utilizada a biblioteca Flask-Login, conectada à aplicação por meio da classe LoginManager. 
 
@@ -18,7 +18,7 @@ Agora, uma breve apresentação de cada uma das páginas do site e suas funciona
 
 Na página inicial (*homepage*) é possível ter acesso aos posts já criados pelos usuários, com título, corpo, nome do usuário, sua foto e data da criação da postagem.
 
-Também é possível notar os links para a página 'Usuários', 'Contato' e 'Entrar'.
+Também é possível notar os links para as páginas 'Usuários', 'Contato' e 'Entrar'.
 
 <div align="center">
     <img src="https://github.com/natalia-mvieira/sitecomunidade/assets/144560412/b9eb25f0-e2bf-417d-8233-9a728866aaa9" width="700px"/>
@@ -44,7 +44,7 @@ Ao tentar acesso na página Usuários ou ao clicar no botão 'Entrar' no canto s
 
 Ao criar conta, as validações dos campos do formulário vão verificar se o e-mail já existe, já que ele deve ser único, se o nome de usuário está preenchido e se os campos de senha também. A senha deve ter de 6 a 20 caracteres e o campo de confirmação de senha verifica se o dado inserido é o mesmo do campo 'senha'. As informações incompatíveis com as validações serão informadas na tela.
 
-Após criar conta, o usuário pode realizar o login, com todo o sistema de verificação se e-mail e senha. Automaticamente, o usuário senha direcionado à página da homepage. Porém, agora, ele poderá criar, editar e deletar posts, além de poder ver o perfil de outros usuários.
+Após criar conta, o usuário pode realizar o login, com todo o sistema de verificação de e-mail e senha. Automaticamente, o usuário será direcionado à página da homepage. Porém, agora, ele poderá criar, editar e deletar posts, além de poder ver o perfil de outros usuários.
 
 <div align="center">
     <img src="https://github.com/natalia-mvieira/sitecomunidade/assets/144560412/597b851a-dcfe-4186-b672-ea588bd7c080" width="700px"/>
@@ -60,7 +60,7 @@ Essa página mostra todos os usuários existentes na plataforma, com informaçõ
 
 ### Perfil
 
-No botão 'Meu Perfil' na homepage, o usuário consegue visualizar o próprio perfil. Ele pode ver todos os posts que ele criou no botão 'Meus Posts', o qual direciona a página para a parte inferior, onde os posts aparecem. 
+No botão 'Meu Perfil' na homepage, o usuário consegue visualizar o próprio perfil. Ele pode ver todos os posts que ele criou no botão 'Meus Posts', o qual direciona a página para a parte inferior, onde os posts aparecem dos mais recentes para os mais antigos. 
 
 <div align="center">
     <img src="https://github.com/natalia-mvieira/sitecomunidade/assets/144560412/faa7a9b4-805c-4f3e-a0f9-3c2a12a0999f" width="700px"/>
@@ -80,7 +80,7 @@ Aqui, o usuário pode alterar informações de e-mail, usuário, senha, foto de 
     <img src="https://github.com/natalia-mvieira/sitecomunidade/assets/144560412/07a09d0e-36a9-441d-8437-cae756f6399f" width="700px"/>
 </div>
 
-Quando um usuário cria uma conta, sua foto de perfil é padrão do site (default). Para alterar a foto de perfil, ele pode escolher um arquivo do computador. Esse arquivo terá seu nome alterado, sendo adicionada uma chave aleatória ao final dele, utilizando-se a biblioteca *secrets*. Isso evita a sobreposição de arquivos no banco de dados no caso de usuários diferentes colocarem fotos com mesmo nome.
+Quando um usuário cria uma conta, sua foto de perfil é padrão do site (*default*). Para alterar a foto de perfil, ele pode escolher um arquivo do computador. Esse arquivo terá seu nome alterado, sendo adicionada uma chave aleatória ao final dele, utilizando-se a biblioteca *secrets*. Isso evita a sobreposição de arquivos no banco de dados no caso de usuários diferentes colocarem fotos com mesmo nome.
 
 ### Alterar senha
 
@@ -107,7 +107,7 @@ Ao clicar no título do próprio post, seja na homepage, seja no próprio perfil
     <img src="https://github.com/natalia-mvieira/sitecomunidade/assets/144560412/fb213e7e-eada-4993-8dc4-85f6334d3259" width="700px"/>
 </div>
 
-Ao optar por deltar o post, uma mensagem de confirmação aparecerá na tela para que o processo seja completado.
+Ao optar por deletar o post, uma mensagem de confirmação aparecerá na tela para que o processo seja completado.
 
 <div align="center">
     <img src="https://github.com/natalia-mvieira/sitecomunidade/issues/12#issue-1923085231" width="700px"/>
@@ -115,7 +115,7 @@ Ao optar por deltar o post, uma mensagem de confirmação aparecerá na tela par
 
 ### Outro Perfil
 
-É possível ter acesso ao perfil de outro usuário. Basta clicar sobre a foto de perfil ao lado dos posts, tanto na homepage quanto na página 'Usuários'. Assim, é possível ver todos os posts daquele usuário, além das informações gerais.
+É possível ter acesso ao perfil de outro usuário. Basta clicar sobre a foto de perfil ao lado dos posts na homepage ou na página 'Usuários'. Assim, é possível ver todos os posts daquele usuário, além das informações gerais.
 
 <div align="center">
     <img src="https://github.com/natalia-mvieira/sitecomunidade/assets/144560412/cbe15ad4-0716-4fb4-a59c-f263eff49e41" width="700px"/>
@@ -123,8 +123,8 @@ Ao optar por deltar o post, uma mensagem de confirmação aparecerá na tela par
 
 ### Post
 
-Ao clicar sobre o título de um post de outro uauário, é possível visualizar o post individualmente, em outra página.
-É feita uma verificação se o criador do post é ou não o usuário atual. Se for, ele terá a opção de editar e deletar mencionada acima.
+Ao clicar sobre o título de um post de outro usuário, é possível visualizar o post individualmente, em outra página.
+É feita uma verificação se o criador do post é ou não o usuário atual. Se for, ele terá as opções de editar e deletar mencionadas acima.
 
 <div align="center">
     <img src="https://github.com/natalia-mvieira/sitecomunidade/assets/144560412/72314da2-1944-4c54-af24-17fee6748f00" width="700px"/>
