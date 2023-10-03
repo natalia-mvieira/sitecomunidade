@@ -116,7 +116,7 @@ Ao clicar no título do próprio post, seja na homepage, seja no próprio perfil
 Ao optar por deletar o post, uma mensagem de confirmação aparecerá na tela para que o processo seja completado.
 
 <div align="center">
-    <img src="https://github.com/natalia-mvieira/sitecomunidade/assets/144560412/272119975-12edec7f-dce3-4011-824b-dbae46f8e0f5" width="700px"/>
+    <img src="https://github.com/natalia-mvieira/sitecomunidade/assets/144560412/12edec7f-dce3-4011-824b-dbae46f8e0f5" width="700px"/>
 </div>
 
 ### Outro Perfil
