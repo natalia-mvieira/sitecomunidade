@@ -82,6 +82,12 @@ Aqui, o usuário pode alterar informações de e-mail, usuário, senha, foto de 
 
 Quando um usuário cria uma conta, sua foto de perfil é padrão do site (*default*). Para alterar a foto de perfil, ele pode escolher um arquivo do computador. Esse arquivo terá seu nome alterado, sendo adicionada uma chave aleatória ao final dele, utilizando-se a biblioteca *secrets*. Isso evita a sobreposição de arquivos no banco de dados no caso de usuários diferentes colocarem fotos com mesmo nome.
 
+Exemplo de usuário com imagem de perfil padrão, ou seja, não escolheu uma foto de perfil:
+
+<div align="center">
+    <img src="https://github.com/natalia-mvieira/sitecomunidade/assets/144560412/08754a47-5892-4c5a-8083-02bc222e17e7" width="700px"/>
+</div>
+
 ### Alterar senha
 
 Caso o usuário opte por fazer alteração de sua senha, ele será direcionado à página que contém um formulário de alteração. Ele deve inserir a nova senha escolhida, fazer sua confirmação e adicionar, por segurança, a senha atual. Esta será verificada no banco de dados por meio do Bcrypt. Se for compatível com o usuário, e se os demais campos seguirem os critérios de validação, a alteração é feita.
