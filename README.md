@@ -4,7 +4,7 @@ A Comunidade NMV é um site em que diferentes usuários da plataforma da Escola 
 
 O site foi criado utilizando-se o *framework* Flask.
 
-Para gerenciamento dos usuários e das postagens, foi criado um banco de dados por meio da biblioteca SQLAlchemy. Uma das tabelas armaze as informações das contas criadas (Usuario) e a outra (Post) armazena as informações dos posts criados.
+Para gerenciamento dos usuários e das postagens, foi criado um banco de dados por meio da biblioteca SQLAlchemy. Uma das tabelas armazena as informações das contas criadas (Usuario) e a outra (Post) armazena as informações dos posts criados.
 
 Na criação da conta, para garantir a segurança da senha do usuário, ela é criptografada por meio da classe Bcrytpt da biblioteca Flask-Bcrypt.
 
