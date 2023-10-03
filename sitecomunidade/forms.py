@@ -62,6 +62,3 @@ class FormCriarPost(FlaskForm):
     titulo = StringField('Título:', validators=[DataRequired(), Length(2,140)])
     corpo = TextAreaField('Escreva seu post aqui:', validators=[DataRequired()])
     botao_submit_criarpost = SubmitField('Salvar Post')
-
-
-

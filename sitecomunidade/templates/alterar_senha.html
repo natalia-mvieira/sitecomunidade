@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {% extends 'homepage.html' %}
 
 {% block body %}
@@ -65,4 +66,73 @@
       </div>
   </div>
 
+=======
+{% extends 'homepage.html' %}
+
+{% block body %}
+
+<div class="container mt-4">
+      <div class="row">
+          <div class="col">
+              <form method="POST" action="" class="border mx-auto p-4 justify-content:center" style="width:50%">
+                    {{ form_editar_senha.csrf_token }}
+                    <legend>Alterar Senha</legend>
+                      <div class="div-input">
+                        {{ form_editar_senha.senha_nova.label(class="form-control-label")}}
+                        {% if form_editar_senha.senha_nova.errors %}
+                            {{ form_editar_senha.senha_nova(class="form-control is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for erro in form_editar_senha.senha_nova.errors %}
+                                    <p style="color: red">{{ erro }}</p>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form_editar_senha.senha_nova(class="form-control") }}
+                        {% endif %}
+                      </div>
+
+                      <div class="div-input mt-2">
+                          {{ form_editar_senha.confirmacao_senha.label(class="form-control-label")}}
+                          {% if form_editar_senha.confirmacao_senha.errors %}
+                              {{ form_editar_senha.confirmacao_senha(class="form-control is-invalid") }}
+                              <div class="invalid-feedback">
+                                  {% for erro in form_editar_senha.confirmacao_senha.errors %}
+                                    <p style="color: red">{{ erro }}</p>
+                                  {% endfor %}
+                              </div>
+                          {% else %}
+                               {{ form_editar_senha.confirmacao_senha(class="form-control") }}
+                          {% endif %}
+                      </div>
+
+                      <div class="div-input mt-2">
+                        {{ form_editar_senha.senha_atual.label(class="form-control-label")}}
+                        {% if form_editar_senha.senha_atual.errors %}
+                            {{ form_editar_senha.senha_atual(class="form-control is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for erro in form_editar_senha.senha_atual.errors %}
+                                    <p style="color: red">{{ erro }}</p>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form_editar_senha.senha_atual(class="form-control") }}
+                        {% endif %}
+                      </div>
+
+                      <div class="btn-group d-flex justify-content-center mt-3">
+                            <div>
+                                <a class=flex-grow-1 href="{{ url_for('editar_perfil') }}">
+                                    <button type="button" class="btn btn-outline-primary me-1 flex-grow-1">Voltar</button>
+                                </a>
+                            </div>
+                            <div>
+                                {{ form_editar_senha.botao_submit_alterarsenha(class="btn btn-primary") }}
+                            </div>
+                      </div>
+              </form>
+          </div>
+      </div>
+  </div>
+
+>>>>>>> a119a75028f5bfd353df8adc1c78644b8734edbf
 {% endblock %}

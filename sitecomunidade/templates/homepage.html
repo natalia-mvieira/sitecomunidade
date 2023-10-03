@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -66,4 +67,74 @@
 
 {% endblock %}
 
+=======
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Comunidade NMV</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+
+{% include 'navbar.html' %}
+    <div class="container">
+        {% with mensagens = get_flashed_messages(with_categories=True) %}
+            {% if mensagens %}
+                {% for categoria, mensagem in mensagens %}
+                    <div class="alert {{ categoria }}">
+                        {{ mensagem }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+
+{% block body %}
+<body>
+    <div class="container mt-3">
+        <h1 style="color: #023E5F">Comunidade NMV</h1>
+        <h3>Mais conexão entre os alunos da NMV - Escola de Treinamentos</h3>
+        <hr>
+
+    {% for post in posts %}
+        <div class="row border m-4 p-3" style="background-color: #f2f5f8">
+
+            <div class="col col-3">
+                <div class="flex-shrink-0" style="text-align: center">
+                    {% if post.autor.id != current_user.id %}
+                        <a class="w-100" href="{{ url_for('outro_perfil', id=post.autor.id) }}">
+                            <img src="{{  url_for('static', filename='fotos_perfil/{}'.format(post.autor.foto_perfil)) }}"
+                            alt="Generic placeholder image" class="img-fluid" style="width: 200px; border-radius: 10px;">
+                        </a>
+                    {% elif post.autor.id == current_user.id %}
+                        <a class="w-100" href="{{ url_for('perfil', id=post.autor.id) }}">
+                            <img src="{{  url_for('static', filename='fotos_perfil/{}'.format(post.autor.foto_perfil)) }}"
+                            alt="Generic placeholder image" class="img-fluid" style="width: 200px; border-radius: 10px;">
+                        </a>
+                    {% endif %}
+
+                    <div class="mt-2" style="text-align: center">
+                        <strong>{{ post.autor.username }}</strong>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col col-9">
+                <a style="text-decoration: none" href="{{ url_for('exibir_post', id=post.id) }}"><h3>{{ post.titulo }}</h3></a>
+                <p>{{ post.corpo }}</p>
+            </div>
+
+            <div align="right">
+                <small>Data de criação: {{ post.data_criacao.strftime("%d/%m/%Y") }}</small>
+            </div>
+        </div>
+    {% endfor %}
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+
+{% endblock %}
+
+>>>>>>> a119a75028f5bfd353df8adc1c78644b8734edbf
 </html>
