@@ -2,10 +2,14 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_bcrypt import Bcrypt
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = '6b5fa2af06361aaff79bd2db591de150'
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///sitecomunidade.db"
+app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
+app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv('SQLALCHEMY_DATABASE_URI')
 
 database = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
